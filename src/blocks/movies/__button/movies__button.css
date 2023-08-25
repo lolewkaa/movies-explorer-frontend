@@ -1,0 +1,10 @@
+.movies__button {
+  border: 3px solid #F9F9F9;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: background-color .3s;
+}

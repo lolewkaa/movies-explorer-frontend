@@ -1,0 +1,14 @@
+.movies__button-more {
+  width: 100%;
+  border: none;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  height: 36px;
+  padding: 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.movies__button-more:hover {
+  opacity: 0.8;
+}

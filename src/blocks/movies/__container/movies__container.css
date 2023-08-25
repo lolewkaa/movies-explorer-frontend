@@ -1,0 +1,16 @@
+.movies__container {
+ margin: 70px 70px 0 70px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ font-size: 12px;
+ font-weight: 500;
+ line-height: 1.2;
+ max-width: 1140px;
+}
+
+@media screen and (max-width: 321px) {
+    .movies__container {
+      margin: 40px 0 0 0;
+    }
+  }

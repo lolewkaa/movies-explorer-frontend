@@ -1,0 +1,14 @@
+.form-button__text {
+  margin: 0 6px 0 0;
+  padding: 0;
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 320px) {
+  .form-button__text {
+   font-size: 12px;
+  }
+}

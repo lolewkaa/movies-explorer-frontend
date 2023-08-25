@@ -1,0 +1,9 @@
+.searchForm {
+  padding-top: 60px;
+}
+
+@media screen and (max-width: 320px) {
+  .searchForm {
+    padding-top: 80px;
+  }
+}

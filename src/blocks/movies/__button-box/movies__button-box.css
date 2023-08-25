@@ -1,0 +1,6 @@
+.movies__button-box {
+  max-width: 270px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}

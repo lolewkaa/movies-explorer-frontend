@@ -1,0 +1,18 @@
+.burgerMenu__box {
+    width:  520px;
+    height: 1024px;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    right: 0;
+    background-color: white;
+}
+
+@media screen and (max-width: 524px) {
+    .burgerMenu__box {
+      max-width: 320px;
+      height: 780px;
+    }
+  }

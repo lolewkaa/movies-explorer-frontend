@@ -1,0 +1,20 @@
+.student__desc {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: black;
+  transition: 0.5s;
+}
+
+.student__desc:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 769px) {
+  .student__desc {
+    max-width: 46px;
+  }
+}

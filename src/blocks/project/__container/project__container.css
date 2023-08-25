@@ -1,0 +1,29 @@
+.project__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+  
+}
+
+
+
+@media screen and (max-width: 769px) {
+  .project__container{
+  
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .project__container{
+    flex-direction: column;
+    min-width: 284px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .project__container:first-of-type{
+    flex-direction: column;
+    min-width: 284px;
+    margin-bottom: 56px;
+  }
+}

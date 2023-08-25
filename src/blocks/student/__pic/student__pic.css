@@ -1,0 +1,19 @@
+.student__pic {
+    width: 270px;
+    height: 327px;
+}
+
+@media screen and (max-width: 769px) {
+    .student__pic {
+        width: 255px;
+        height: 307px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .student__pic {
+        width: 292px;
+        height: 352px;
+        margin-bottom: 40px;
+    }
+  }

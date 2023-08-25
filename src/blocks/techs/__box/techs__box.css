@@ -1,0 +1,20 @@
+.techs__box {
+  display: flex;
+  margin: 100px 0 0 0;
+}
+
+@media screen and (max-width: 655px) {
+  .techs__box {
+    flex-wrap: wrap;
+    max-width: 300px;
+    
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .techs__box {
+    
+    max-width: 178px;
+    
+  }
+}

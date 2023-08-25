@@ -1,0 +1,22 @@
+.student__description {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 26px 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .student__description {
+    max-width: 348px;
+    font-size: 12px;
+    margin: 0 0 20px 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .student__description {
+    max-width: 292px;
+    font-size: 11px;
+  }
+}

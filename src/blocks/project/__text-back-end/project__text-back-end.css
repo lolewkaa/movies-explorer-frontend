@@ -1,0 +1,23 @@
+.project__text-back-end {
+    color: #A0A0A0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    width: 50%;
+    margin: 0;
+    padding: 9px 14px 9px 14px;
+    text-align: center;
+}
+
+@media screen and (max-width: 932px) {
+    .project__text-back-end{
+      padding: 9px 10px 9px 10px;
+    }
+  }
+
+  @media screen and (max-width: 605px) {
+    .project__text-back-end{
+      font-size: 11px;
+      padding: 10px 10px 10px 10px;
+    }
+  }

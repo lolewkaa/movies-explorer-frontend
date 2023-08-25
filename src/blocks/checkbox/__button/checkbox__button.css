@@ -1,0 +1,9 @@
+.checkbox__button {
+  display: inline-block;
+}
+
+@media screen and (max-width: 321px) {
+  .checkbox__button {
+  
+  }
+}
