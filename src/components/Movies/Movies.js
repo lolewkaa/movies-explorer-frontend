@@ -9,7 +9,6 @@ export default function Movies() {
 
     return (
       <section className="movies">
-        <Header />
         <SearchForm />
         <FilterCheckbox />
         <MoviesCardList />

@@ -19,11 +19,14 @@ function App() {
   const footer =
     location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies';
 
+    const header =
+    location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile';
 
+  
 
   return (
     <div className="page">
-      
+     {header && <Header />}
       <Routes>
         <Route
           path="/"

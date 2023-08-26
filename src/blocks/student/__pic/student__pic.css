@@ -3,7 +3,7 @@
     height: 327px;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 802px) {
     .student__pic {
         width: 255px;
         height: 307px;

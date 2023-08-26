@@ -4,3 +4,15 @@
   justify-content: space-between;
   align-items: end;
 }
+
+@media screen and (max-width: 769px) {
+  .movies__button-box {
+   max-width: 315px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .movies__button-box {
+   
+  }
+}

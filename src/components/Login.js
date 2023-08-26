@@ -11,10 +11,10 @@ export default function Login() {
         title='Рады видеть!'
         />
         <h2 className="register__text">E-mail</h2>
-        <input className="register__input" id='email' type='text' placeholder='Укажите почту' />
+        <input className="register__input" id='email' type='text' placeholder='Укажите почту' required />
         <span className="register__item-error">Что-то пошло не так...</span>
         <h2 className="register__text" >Пароль</h2>
-        <input className="register__input register__input-error" id='password' type='password' placeholder='Введите пароль' />
+        <input className="register__input register__input-error" id='password' type='password' placeholder='Введите пароль' required />
         <span className="register__item-error">Что-то пошло не так...</span>
       </div>
       <div className="form-button">

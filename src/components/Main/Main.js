@@ -10,7 +10,6 @@ import Header from "../Header";
 export default function Main() {
   return(
     <main>
-      <Header />
       <Promo />
       <NavTab />
       <AboutProject />

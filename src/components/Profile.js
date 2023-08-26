@@ -8,16 +8,15 @@ export default function Profile() {
 
   return (
     <section className="profile">
-      <Header />
       <div className="profile__container">
         <h2 className="profile__title">Привет, Виталий!</h2>
           <div className="profile__box">
             <h2 className="profile__text">Имя</h2>
-            <input className="profile__input"/>
+            <input className="profile__input" required/>
           </div>
           <div className="profile__box">
             <h2 className="profile__text">E-mail</h2>
-            <input className="profile__input"/>
+            <input className="profile__input" required/>
           </div>
           <div className="profile__box-button">
             <button className="profile__button">

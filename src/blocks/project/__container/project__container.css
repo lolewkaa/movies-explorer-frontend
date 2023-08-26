@@ -2,14 +2,21 @@
   display: flex;
   flex-direction: column;
   max-width: 550px;
-  
+  margin-top: 70px;
 }
 
 
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1071px) {
   .project__container{
-  
+  margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 1071px) {
+  .project__container:last-of-type{
+    margin-right: 0;
+    
   }
 }
 
@@ -17,13 +24,16 @@
   .project__container{
     flex-direction: column;
     min-width: 284px;
+    margin-top: 60px;
+    margin-right: 0;
   }
 }
 
 @media screen and (max-width: 321px) {
-  .project__container:first-of-type{
+  .project__container:last-of-type{
     flex-direction: column;
     min-width: 284px;
-    margin-bottom: 56px;
+    margin-top: 56px;
+    
   }
 }

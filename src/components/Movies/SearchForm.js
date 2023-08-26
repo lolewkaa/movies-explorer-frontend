@@ -8,12 +8,11 @@ export default function SearchForm() {
         <input
           className='form__input'
           name='search'
-          minLength='2'
-          maxLength='40'
           type='text'
           placeholder='Фильм'
+          required
         />
-        <button className='form__button' type='button'>
+        <button className='form__button'>
           <img className="form__icon" src={formIcon} alt="иконка 'Поиск'" />
         </button>
       </form>

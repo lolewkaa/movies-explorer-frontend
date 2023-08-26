@@ -6,6 +6,7 @@
   margin: 159px 0 0 0 ;
   height: 775px;
   justify-content: space-between;
+  position: fixed;
 }
 
 @media screen and (max-width: 524px) {
