@@ -8,10 +8,12 @@ export default function SavedMovies() {
 
     return (
         <>
-        <Header />
         <SearchForm />
         <FilterCheckbox />
         <MoviesCardList />
+        <div className="movies__box-button-more">
+          <button className="movies__button-more">Ещё</button>
+        </div>
         </>
     )
 }
