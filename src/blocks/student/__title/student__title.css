@@ -1,0 +1,23 @@
+.student__title {
+  font-size: 50px;
+  line-height: 1.2;
+  font-weight: normal;
+  margin: 0 0 18px 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .student__title {
+    max-width: 348px;
+    font-size: 40px;
+    margin: 0 0 16px 0;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .student__title {
+    max-width: 292px;
+    font-size: 30px;
+    margin: 0 0 20px 0;
+  }
+}

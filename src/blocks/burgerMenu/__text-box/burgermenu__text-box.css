@@ -1,0 +1,6 @@
+.burgermenu__text-box {
+  display: flex;
+  flex-direction: column;
+  height: 114px;
+  align-items: center;
+}

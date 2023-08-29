@@ -1,0 +1,20 @@
+.portfolio__box {
+  max-width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-bottom: 1px solid #E8E8E8;
+  margin-bottom: 20px;
+  padding-bottom: 9px;
+}
+
+.portfolio__box:last-child {
+  margin-bottom: 0;
+  border: none;
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio__box {
+    padding-bottom: 19px;
+  }
+}

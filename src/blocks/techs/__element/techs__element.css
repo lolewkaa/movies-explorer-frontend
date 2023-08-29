@@ -1,0 +1,38 @@
+.techs__element {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 10px 0 0;
+  padding: 21px 0 0 0;
+  background-color: #E8E8E8;
+  border-radius: 10px;
+  width: 90px;
+  height: 39px;
+  text-align: center;
+}
+
+.techs__element:last-child {
+  margin: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .techs__element {
+    width: 84px;
+    height: 36px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 655px) {
+  .techs__element {
+    margin-bottom: 10px;
+    
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .techs__element:nth-child(2n) {
+    margin-right: 0;
+    
+  }
+}

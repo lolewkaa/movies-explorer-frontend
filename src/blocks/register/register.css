@@ -1,0 +1,22 @@
+.register {
+  width: 396px;
+  margin: 70px auto 0 auto;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 769px) {
+  .register {
+   margin: 232px auto 232px auto;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .register {
+   margin: 56px auto 30px auto;
+   max-width: 260px;
+   height: 694px;
+  }
+}

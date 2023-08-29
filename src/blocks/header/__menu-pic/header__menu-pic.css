@@ -1,0 +1,10 @@
+.header__menu-pic {
+  
+}
+
+@media screen and (max-width: 321px) {
+    .header__menu-pic {
+      width: 40px;
+      height: 43px;
+    }
+  }

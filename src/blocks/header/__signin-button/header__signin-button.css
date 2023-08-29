@@ -1,0 +1,27 @@
+.header__signin-button {
+  background-color: #2BE080;
+  border-radius: 3px;
+  padding: 8px 20px 8px 20px;
+  border: none;
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0;
+  transition: 0.5s;
+}
+
+.header__signin-button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 321px) {
+  .header__signin-button {
+    padding: 5px 12px 5px 12px;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.6; 
+  }
+}
+

@@ -1,0 +1,21 @@
+.checkbox {
+  margin: 0 70px 10px 70px;
+  display: flex;
+  justify-content: center;
+  padding: 42px 0 70px 0;
+  border-bottom: 1px solid #E8E8E8;
+  max-width: 1140px;
+}
+
+@media screen and (max-width: 768px) {
+  .checkbox {
+    margin: 0 30px 10px 30px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .checkbox {
+   height: 20px;
+   padding: 42px 0 49px 0;
+  }
+}

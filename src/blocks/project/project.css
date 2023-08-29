@@ -1,0 +1,12 @@
+.project {
+  padding-top: 110px;
+  padding-bottom: 110px;
+  max-width: 1280;
+}
+
+@media screen and (max-width: 321px) {
+  .project{
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+}

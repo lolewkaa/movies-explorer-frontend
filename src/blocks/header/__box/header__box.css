@@ -1,0 +1,17 @@
+.header__box {
+  display: flex;
+  margin: 21px 70px 21px 0;
+  align-items: center;
+}
+
+@media screen and (max-width: 769px) {
+  .header__box {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .header__box {
+    margin-right: 14px;
+  }
+}

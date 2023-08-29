@@ -1,0 +1,24 @@
+.header__menu-close {
+    z-index: 6;
+    border: none;
+    background-color: white;
+    width: 22px;
+    height: 22px;
+    top: 0;
+    right: 0;
+   margin: 22.44px 22.44px 0 0;
+   padding: 0;
+   cursor: pointer;
+  transition: 0.5s;
+  position: fixed;
+}
+
+.header__menu-close:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 321px) {
+    .header__menu-close {
+      margin: 13.44px 13.44px 0 0;
+    }
+  }

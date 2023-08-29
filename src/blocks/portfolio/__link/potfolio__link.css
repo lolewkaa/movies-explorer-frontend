@@ -1,0 +1,40 @@
+.potfolio__link {
+  border-bottom: 1px solid #E8E8E8;
+  margin: 0 0 20px 0;
+  padding: 0 0 9px 0;
+  color: black;
+  text-decoration: none;
+  max-width: 1140px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 1.6;
+  transition: 0.5s;
+}
+
+.potfolio__link:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.potfolio__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 769px) {
+  .potfolio__link {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .potfolio__link {
+    font-size: 18px;
+    height: 28px;
+    width: 250px;
+  }
+}

@@ -1,0 +1,33 @@
+.project__box {
+  display: flex;
+  margin: 110px 70px 0 70px;
+  max-width: 1140px;
+}
+.project__box:last-child {
+  display: flex;
+  margin: 23px 70px 0px 70px;
+}
+
+@media screen and (max-width: 769px) {
+  .project__box{
+    margin: 93px 50px 0 50px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .project__box:last-child{
+    margin: 14px 50px 0 50px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .project__box{
+    margin: 60px 18px 0 18px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .project__box:last-child{
+    margin: 0px 18px 0 18px;
+  }
+}

@@ -1,0 +1,14 @@
+.notFound__link {
+  color: #FF6838;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2;
+  text-decoration: none;
+  margin: 184px auto 0 auto;
+}
+
+@media screen and (max-width: 321px) {
+  .notFound__link {
+    font-size: 12px;
+  }
+}

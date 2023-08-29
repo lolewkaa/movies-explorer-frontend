@@ -1,0 +1,23 @@
+.student__box {
+  max-width: 600px;
+}
+
+@media screen and (max-width: 1078px) {
+  .student__box{
+   max-width: 364px;
+    
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .student__box{
+   max-width: 292px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 488px) {
+  .student__box{
+    margin-right: 0;
+  }
+}

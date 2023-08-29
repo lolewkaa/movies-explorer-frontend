@@ -1,0 +1,8 @@
+.header__landing-box {
+    max-width: 1280px;
+    margin: 0;
+    display: flex;
+   justify-content: space-between;
+   height: 70px;
+  
+}

@@ -1,0 +1,16 @@
+.burgerMenu__button {
+  width: 100px;
+  height: 32px;
+  border-radius: 20px;
+  background: #F9F9F9;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.burgerMenu__button:hover {
+  opacity: 0.8;
+}

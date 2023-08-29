@@ -1,0 +1,5 @@
+.movies__button_like {
+  background-color: #2BE080;
+  border: 3px solid #FFFFFF;
+  transition: background-color .3s;
+}

@@ -1,0 +1,24 @@
+.project__text-front-end {
+    color: #A0A0A0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    padding: 9px 356px 9px 356px;
+}
+
+@media screen and (max-width: 932px) {
+    .project__text-front-end{
+      
+      padding: 9px 206.19px 9px 206.19px;
+    }
+  }
+
+  @media screen and (max-width: 605px) {
+    .project__text-front-end{
+      font-size: 11px;
+      padding: 10px 52px 10px 52px;
+    }
+  }

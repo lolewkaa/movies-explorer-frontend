@@ -1,0 +1,21 @@
+.movies__list {
+  width: 270px;
+  height: 218px;
+  background-color: #FDFDFD;
+  border-radius: 6px;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
+}
+
+@media screen and (max-width: 768px) {
+  .movies__list {
+    width: 339px;
+  height: 257px;
+  }
+}
+
+@media screen and (max-width: 356px) {
+  .movies__list {
+    max-width: 300px;
+ 
+  }
+}

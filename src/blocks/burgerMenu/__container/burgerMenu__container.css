@@ -1,0 +1,18 @@
+.burgerMenu__container {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 159px 0 0 0 ;
+  height: 775px;
+  justify-content: space-between;
+  position: fixed;
+}
+
+@media screen and (max-width: 524px) {
+  .burgerMenu__container {
+    max-width: 320px;
+    max-height: 590px;
+    margin: 144px 0 0 0 ;
+  }
+}
