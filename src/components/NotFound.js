@@ -8,7 +8,7 @@ export default function NotFound() {
     <div className="notFound">
     <h2 className="notFound__title">404</h2>
     <h2 className="notFound__text">Страница не найдена</h2>
-    <Link className="notFound__link">Назад</Link>
+    <Link className="notFound__link" to='/'>Назад</Link>
     </div>
   )
 }

@@ -2,4 +2,8 @@
   background-color: #2BE080;
   border: 3px solid #FFFFFF;
   transition: background-color .3s;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  
 }

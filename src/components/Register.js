@@ -1,34 +1,92 @@
 import React from "react";
 import Form from "./Form";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useValidation } from "../hooks/FormValidation";
+import { useState, useEffect } from 'react';
 
-export default function Register() {
+export default function Register({onRegister, errMessage}) {
+  const {  values,  errors, isValid, handleChange, resetForm } = useValidation();
+  
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
+
+  function handleSubmit (e) {
+    e.preventDefault();
+    onRegister({
+      email: values.email,
+      password: values.password,
+      name: values.name
+    })
+  };
+  
+  
+  
 
   return (
-    <section className="register">
-        <form>
+    <form className="register" onSubmit={handleSubmit} noValidate>
+        <div>
       <Form 
       title='Добро пожаловать!'
       />
       <h2 className="register__text">Имя</h2>
-      <input className="register__input" id='name' type='text' placeholder='Введите имя' required />
-      <span className="register__item-error">Что-то пошло не так...</span>
+      <input   
+          className={`register__input ${errors.name && 'register__input_type_error'}`}
+          id="name"
+          type="text"
+          name="name"
+          placeholder="Имя"
+          onChange={handleChange}
+          // value={formValue.name || ''}
+          value = {values.name || ''}
+          minLength='2'
+          maxLength='30'
+          required />
+         
+         <span className={`profile__span ${errors.name  && 'profile__item-error'}`}>Что-то пошло не так...</span>
       <h2 className="register__text">E-mail</h2>
-      <input className="register__input" id='email' type='text' placeholder='Укажите почту' required />
-      <span className="register__item-error">Что-то пошло не так...</span>
+      <input 
+          className={`register__input ${errors.email && 'register__input_type_error'}`}
+          id="email"
+          type="text"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          // value={formValue.email || ''}
+          pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
+          value={values.email || ''}
+          required />
+      <span className={`profile__span ${errors.email  && 'profile__item-error'}`}>Что-то пошло не так...</span>
       <h2 className="register__text" >Пароль</h2>
-      <input className="register__input register__input-error" id='password' type='password' placeholder='Введите пароль' required />
-      <span className="register__item-error">Что-то пошло не так...</span>
-        </form>
-        
+      <input 
+          className={`register__input ${errors.password && 'register__input_type_error'}`}
+          id="password"
+          type="text"
+          name="password"
+          placeholder="Пароль"
+          onChange={handleChange}
+          // value={formValue.password || ''}
+          minLength="8"
+          maxLength="40"
+          value={values.password || ''}
+          required />
+      <span className={`profile__span ${errors.password  && 'profile__item-error'}`}>Что-то пошло не так...</span>
+      </div>
+
       <div className="form-button">
-        <button className="form-button__button">Зарегистрироваться</button>
+      <span className="form-button__error-message" >{errMessage}</span>
+        <button 
+        className={isValid ? 'form-button__button' : 'form-button__button form-button__button_disable'} 
+        disabled={isValid ? false : true} 
+         
+        type='submit'
+        >Зарегистрироваться</button>
         <div className="form-button__container">
           <h2 className="form-button__text">Уже зарегистрированы?</h2>
           <Link className='form-button__link' to='/signin'>Войти</Link>
         </div>
       </div>
-        
-    </section>
+      
+    </form>
   )
 }
