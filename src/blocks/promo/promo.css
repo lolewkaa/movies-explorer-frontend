@@ -1,6 +1,6 @@
 .promo {
   background-color: #465DFF;
-  max-width: 1280px;
+ width: 100%;
  
   display: flex;
   justify-content: center;

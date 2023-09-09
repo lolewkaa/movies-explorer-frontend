@@ -18,6 +18,7 @@ export default function Movies(props) {
     localStorage.setItem('findMovies', JSON.stringify(values))
   }, [values]);
 
+
   function searchShortMovies(data) {
     const newValues = {
       ...data,
@@ -32,6 +33,7 @@ export default function Movies(props) {
     return findAllMovies(data)
       .then(() => {
         setValues(data);
+        
       });
   }
 

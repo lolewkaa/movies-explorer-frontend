@@ -15,6 +15,7 @@ import Footer from "./Footer";
 import {findMoviesName, findMoviesTime} from '../utils/constants'
 import NotFound from './NotFound'
 import ProtectedRouteElement from "../utils/ProtectedRoute";
+import AuthRoute from '../utils/AuthRoute'
 
 function App() {
   const [errorMessage, isErrorMessage] = useState({
@@ -30,6 +31,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [movies, setMovies] = useState([]);
   const [saveMovies,setSaveMovies] = useState([]);
+  const [isBlockInput, setIsBlockInput] = useState(false);
   const navigate = useNavigate();
  
   const checkToken = useCallback(() => {
@@ -53,6 +55,8 @@ function App() {
     checkToken();
   }, [checkToken]);
 
+
+  
   const [stateIsLogin, setStateIsLogin] = useState(
     JSON.parse(localStorage.getItem('stateIsLogin')) ||
     { isLoggedIn: false }
@@ -64,6 +68,7 @@ function App() {
 
 
   const handleRegister = ({ name, email, password }) => {
+    setIsBlockInput(true)
     auth
       .register(name, email, password)
       .then(() => {
@@ -74,6 +79,7 @@ function App() {
         isErrorMessage({
           errMessage: '',
         });
+        setIsBlockInput(false)
         if (error === `Ошибка: 409`) {
           isErrorMessage({
             errMessage: 'Пользователь с таким email уже существует.',
@@ -89,6 +95,7 @@ function App() {
   };
  
   const handleLogin = ({ email, password }) => {
+    setIsBlockInput(true)
     auth
       .authorization(email, password)
       .then((res) => {
@@ -105,6 +112,7 @@ function App() {
         isErrorMessage({
           errMessage: '',
         });
+        setIsBlockInput(false)
         if (error === `Ошибка: 401`) {
           isErrorMessage({
             errMessage: 'Вы ввели неправильный логин или пароль.',
@@ -120,6 +128,8 @@ function App() {
 
 
 function handleLikeMovie(movie) {
+  const movieIsLiked = saveMovies.some((item) => item.movieId === movie.id);
+    if (!movieIsLiked) {
   mainApi
   .postNewMovie({
     country: movie.country,
@@ -140,10 +150,26 @@ function handleLikeMovie(movie) {
   .catch((error) => {
     console.log(`Ошибка: ${error}`);
   });
+} else {
+  const likedMovie = saveMovies.find(
+    (item) => item.movieId === movie.id
+  )._id;
+  mainApi
+    .deleteMovie(likedMovie)
+    .then(() => {
+      setSaveMovies((state) =>
+        state.filter((item) => item.movieId !== movie.id)
+      );
+    })
+    .catch((error) => {
+      console.log(`Ошибка: ${error}`);
+    });
+}
 }
 
 useEffect(() => {
   if (stateIsLogin.isLoggedIn) {
+    
     mainApi
       .getSavedMovies()
       .then((movies) => setSaveMovies(movies.reverse()))
@@ -165,6 +191,7 @@ function handleCardDelete(movie) {
 }
 
  function handleUpdateProfile({ name, email }) {
+  setIsBlockInput(true)
    mainApi
      .changeUserInfo( name, email)
      .then((res) => {
@@ -175,11 +202,15 @@ function handleCardDelete(movie) {
       isSaveMessage({
         textMessage: 'Данные успешно изменены!'
       })
+      isErrorMessage({
+        errMessage: '',
+      });
      })
      .catch((error) => {
       isErrorMessage({
         errMessage: '',
       });
+      setIsBlockInput(false)
       if (error === `Ошибка: 400`) {
         isErrorMessage({
           errMessage: 'Пользователь с таким email уже существует.',
@@ -218,7 +249,10 @@ function findAllMovies(data) {
     })
     .catch((error) => console.log(`Ошибка: ${error}`))
     .finally(() => setIsLoading(false))
+    
 }
+
+
 
   //очищает хранилище и стейт, отвечающий за состояние авторизации
   function signOut() {
@@ -226,6 +260,7 @@ function findAllMovies(data) {
     localStorage.removeItem('stateIsLogin')
     localStorage.removeItem('findShortMovies')
     localStorage.removeItem('allMovies')
+    localStorage.removeItem('findMovies')
     setStateIsLogin({
       isLoggedIn: false,
     });
@@ -250,7 +285,7 @@ function findAllMovies(data) {
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
     <div className="page">
-     {header && <Header />}
+     {header && <Header  isLoggedIn={stateIsLogin.isLoggedIn} />}
       <Routes>
         <Route
           path="/"
@@ -282,17 +317,25 @@ function findAllMovies(data) {
         />
         <Route
           path='/signup'
-          element={<Register 
+          element={<AuthRoute isLoggedIn={stateIsLogin.isLoggedIn}> 
+          <Register 
           onRegister={handleRegister}
           errMessage={errorMessage.errMessage}
-          />}
+          isBlockInput={isBlockInput}
+          setIsBlockInput={setIsBlockInput}
+          />
+          </AuthRoute>}
         />
         <Route
           path='/signin'
-          element={<Login 
+          element={<AuthRoute isLoggedIn={stateIsLogin.isLoggedIn}>
+          <Login 
           onLogin={handleLogin}
           errMessage={errorMessage.errMessage}
-          />}
+          isBlockInput={isBlockInput}
+          setIsBlockInput={setIsBlockInput}
+          />
+          </AuthRoute>}
         />
         <Route
           path="/profile"
@@ -302,6 +345,8 @@ function findAllMovies(data) {
             errMessage={errorMessage.errMessage}
             textMessage={saveMessage.textMessage}
             signOut={signOut}
+            isBlockInput={isBlockInput}
+            setIsBlockInput={setIsBlockInput}
           />
           </ProtectedRouteElement>}
           

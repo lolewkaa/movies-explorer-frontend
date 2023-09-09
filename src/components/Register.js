@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useValidation } from "../hooks/FormValidation";
 import { useState, useEffect } from 'react';
 
-export default function Register({onRegister, errMessage}) {
+export default function Register({ isBlockInput, onRegister, errMessage}) {
   const {  values,  errors, isValid, handleChange, resetForm } = useValidation();
   
   useEffect(() => {
@@ -41,7 +41,9 @@ export default function Register({onRegister, errMessage}) {
           value = {values.name || ''}
           minLength='2'
           maxLength='30'
-          required />
+          required 
+          readOnly={isBlockInput && true}
+          />
          
          <span className={`profile__span ${errors.name  && 'profile__item-error'}`}>Что-то пошло не так...</span>
       <h2 className="register__text">E-mail</h2>
@@ -55,13 +57,15 @@ export default function Register({onRegister, errMessage}) {
           // value={formValue.email || ''}
           pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
           value={values.email || ''}
-          required />
+          required
+          readOnly={isBlockInput && true}
+          />
       <span className={`profile__span ${errors.email  && 'profile__item-error'}`}>Что-то пошло не так...</span>
       <h2 className="register__text" >Пароль</h2>
       <input 
           className={`register__input ${errors.password && 'register__input_type_error'}`}
           id="password"
-          type="text"
+          type="password"
           name="password"
           placeholder="Пароль"
           onChange={handleChange}
@@ -69,7 +73,9 @@ export default function Register({onRegister, errMessage}) {
           minLength="8"
           maxLength="40"
           value={values.password || ''}
-          required />
+          required 
+          readOnly={isBlockInput && true}
+          />
       <span className={`profile__span ${errors.password  && 'profile__item-error'}`}>Что-то пошло не так...</span>
       </div>
 
@@ -77,7 +83,7 @@ export default function Register({onRegister, errMessage}) {
       <span className="form-button__error-message" >{errMessage}</span>
         <button 
         className={isValid ? 'form-button__button' : 'form-button__button form-button__button_disable'} 
-        disabled={isValid ? false : true} 
+        disabled={!isValid || isBlockInput ? true : false} 
          
         type='submit'
         >Зарегистрироваться</button>

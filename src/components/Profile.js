@@ -5,11 +5,15 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext'
 import { useValidation } from "../hooks/FormValidation";
 import { useState, useEffect, useContext } from 'react';
 
-export default function Profile({signOut, handleUpdateProfile, errMessage, textMessage}) {
+export default function Profile({ isBlockInput, signOut, handleUpdateProfile, errMessage, textMessage}) {
 
-  const {  values,  errors, handleChange, setValues } = useValidation();
+  const { isValid, values,  errors, handleChange, setValues, resetForm } = useValidation();
 
   const { currentUser } = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
   
   useEffect(() => {
     setValues({
@@ -32,6 +36,10 @@ export default function Profile({signOut, handleUpdateProfile, errMessage, textM
       setIsInputActive(true)
     }
 
+    const buttonIsValid =
+  isValid &&
+  (values.name !== currentUser.name || values.email !== currentUser.email);
+
   return (
     <form className="profile" onSubmit={handleSubmit}>
       <div className="profile__container">
@@ -49,6 +57,7 @@ export default function Profile({signOut, handleUpdateProfile, errMessage, textM
              value={values.name ? values.name : ''}
              onChange={handleChange}
              disabled={!isInputActive}
+             readOnly={isBlockInput && true}
             />
           </div>
           <span className={`profile__span ${errors.name  && 'profile__item-error'}`}>Что-то пошло не так...</span>
@@ -66,6 +75,7 @@ export default function Profile({signOut, handleUpdateProfile, errMessage, textM
             onChange={handleChange}
             pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
             disabled={!isInputActive}
+            readOnly={isBlockInput && true}
             />
           </div>
           <span className={`profile__span ${errors.email  && 'profile__item-error'}`}>Что-то пошло не так...</span>
@@ -74,7 +84,8 @@ export default function Profile({signOut, handleUpdateProfile, errMessage, textM
           <span className="form-button__message">{textMessage}</span>
           {isInputActive ? (
             <button
-              className="profile__button-save"
+            className={buttonIsValid ? 'profile__button-save' : 'form-button__button form-button__button_disable'} 
+            disabled={!buttonIsValid || isBlockInput ? true : false}
             >
               Сохранить
             </button>
@@ -84,7 +95,7 @@ export default function Profile({signOut, handleUpdateProfile, errMessage, textM
                 onClick={handleInputState}
               >
                 Редактировать
-              </button><Link to='/signin' className="profile__link" onClick={signOut}>
+              </button><Link to='/' className="profile__link" onClick={signOut}>
                   Выйти из аккаунта
                 </Link></>
             )}

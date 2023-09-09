@@ -30,6 +30,8 @@ export default function MoviesCard(props) {
     // const likeMovieButton = (
     //   `movies__button ${isLiked && 'movies__button_like'}`
     // );
+
+    
      const location = useLocation();
 
     return (
@@ -59,7 +61,6 @@ export default function MoviesCard(props) {
               : 'movies__button'}
             onClick={handleSaveMovie} 
             type='button'
-            disabled={isLiked}
             >
             </button>
             )}

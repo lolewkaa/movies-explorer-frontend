@@ -4,6 +4,9 @@
   font-size: 13px;
   font-weight: normal;
   line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
 }
 
 @media screen and (max-width: 320px) {
