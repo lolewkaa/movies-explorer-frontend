@@ -42,7 +42,7 @@ export default function Register({ isBlockInput, onRegister, errMessage}) {
           minLength='2'
           maxLength='30'
           required 
-          readOnly={isBlockInput && true}
+          disabled={isBlockInput && true}
           />
          
          <span className={`profile__span ${errors.name  && 'profile__item-error'}`}>Что-то пошло не так...</span>
@@ -58,7 +58,7 @@ export default function Register({ isBlockInput, onRegister, errMessage}) {
           pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
           value={values.email || ''}
           required
-          readOnly={isBlockInput && true}
+          disabled={isBlockInput && true}
           />
       <span className={`profile__span ${errors.email  && 'profile__item-error'}`}>Что-то пошло не так...</span>
       <h2 className="register__text" >Пароль</h2>
@@ -74,7 +74,7 @@ export default function Register({ isBlockInput, onRegister, errMessage}) {
           maxLength="40"
           value={values.password || ''}
           required 
-          readOnly={isBlockInput && true}
+          disabled={isBlockInput && true}
           />
       <span className={`profile__span ${errors.password  && 'profile__item-error'}`}>Что-то пошло не так...</span>
       </div>

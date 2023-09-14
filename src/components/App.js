@@ -12,7 +12,6 @@ import { mainApi } from "../utils/MainApi";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Header from "./Header";
 import Footer from "./Footer";
-import {findMoviesName, findMoviesTime} from '../utils/constants'
 import NotFound from './NotFound'
 import ProtectedRouteElement from "../utils/ProtectedRoute";
 import AuthRoute from '../utils/AuthRoute'
@@ -32,6 +31,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [saveMovies,setSaveMovies] = useState([]);
   const [isBlockInput, setIsBlockInput] = useState(false);
+  const [isLiked, setliked] = useState(false);
   const navigate = useNavigate();
  
   const checkToken = useCallback(() => {
@@ -47,16 +47,16 @@ function App() {
           });
           setCurrentUser({ _id, name, email });
         })
+        
         .catch((error) => console.log(`Ошибка: ${error}`));
     } 
+    
   }, []);
 
   useEffect(() => {
     checkToken();
   }, [checkToken]);
 
-
-  
   const [stateIsLogin, setStateIsLogin] = useState(
     JSON.parse(localStorage.getItem('stateIsLogin')) ||
     { isLoggedIn: false }
@@ -126,70 +126,6 @@ function App() {
       })
   };
 
-
-function handleLikeMovie(movie) {
-  const movieIsLiked = saveMovies.some((item) => item.movieId === movie.id);
-    if (!movieIsLiked) {
-  mainApi
-  .postNewMovie({
-    country: movie.country,
-    director: movie.director,
-    duration: movie.duration,
-    year: movie.year,
-    description: movie.description,
-    image: 'https://api.nomoreparties.co' + movie.image.url,
-    trailerLink: movie.trailerLink,
-    thumbnail: 'https://api.nomoreparties.co' + movie.image.formats.thumbnail.url,
-    movieId: movie.id,
-    nameRU: movie.nameRU,
-    nameEN: movie.nameEN,
-  })
-  .then((addedMovie) => {
-    setSaveMovies([addedMovie, ...saveMovies])
-  })
-  .catch((error) => {
-    console.log(`Ошибка: ${error}`);
-  });
-} else {
-  const likedMovie = saveMovies.find(
-    (item) => item.movieId === movie.id
-  )._id;
-  mainApi
-    .deleteMovie(likedMovie)
-    .then(() => {
-      setSaveMovies((state) =>
-        state.filter((item) => item.movieId !== movie.id)
-      );
-    })
-    .catch((error) => {
-      console.log(`Ошибка: ${error}`);
-    });
-}
-}
-
-useEffect(() => {
-  if (stateIsLogin.isLoggedIn) {
-    
-    mainApi
-      .getSavedMovies()
-      .then((movies) => setSaveMovies(movies.reverse()))
-      .catch((error) => {
-        console.log(`Ошибка: ${error}`);
-      });
-  }
-}, [stateIsLogin.isLoggedIn]);
-
-function handleCardDelete(movie) {
-  mainApi
-  .deleteMovie(movie._id)
-  .then(() => {
-    setSaveMovies((movies) => 
-    movies.filter((item) => item.movieId !== movie.movieId)
-      );
-    })
-    .catch(() => console.log('ошибка'));
-}
-
  function handleUpdateProfile({ name, email }) {
   setIsBlockInput(true)
    mainApi
@@ -223,44 +159,17 @@ function handleCardDelete(movie) {
       }
     })
 }
-
-function shortMovies(data) {
-  const findShortMovies = JSON.parse(localStorage.getItem('findShortMovies')) || [];
-
-  const shortMoviesShowed = data.shorts ? findMoviesTime(findShortMovies) : findShortMovies;
-  setMovies(shortMoviesShowed)
-}
-
-function nameMovies (data) {
-  const movies = JSON.parse(localStorage.getItem('allMovies'));
- 
-  let nameMoviesShowed = findMoviesName(movies, data.search);
-  localStorage.setItem('findShortMovies', JSON.stringify(nameMoviesShowed));
-  shortMovies(data)
-}
-
-function findAllMovies(data) {
-  setIsLoading(true)
-  return moviesApi
-    .getMovies()
-    .then((movies) => {
-      localStorage.setItem('allMovies', JSON.stringify(movies));
-      nameMovies(data)
-    })
-    .catch((error) => console.log(`Ошибка: ${error}`))
-    .finally(() => setIsLoading(false))
-    
-}
-
-
-
   //очищает хранилище и стейт, отвечающий за состояние авторизации
   function signOut() {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem('stateIsLogin')
-    localStorage.removeItem('findShortMovies')
-    localStorage.removeItem('allMovies')
-    localStorage.removeItem('findMovies')
+    // localStorage.removeItem("jwt");
+    // localStorage.removeItem('stateIsLogin')
+    // localStorage.removeItem('findMovies')
+    // localStorage.removeItem('allMovies')
+    // localStorage.removeItem('query')
+    // localStorage.removeItem('short')
+    // localStorage.removeItem('allMoviesSave')
+    localStorage.clear()
+    
     setStateIsLogin({
       isLoggedIn: false,
     });
@@ -269,6 +178,7 @@ function findAllMovies(data) {
       email: '',
     });
     navigate('/');
+   
   }
   
   // сохраняем местоположение в переменную
@@ -279,8 +189,6 @@ function findAllMovies(data) {
 
     const header =
     location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile';
-
-  
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
@@ -296,12 +204,12 @@ function findAllMovies(data) {
        element={<ProtectedRouteElement isLoggedIn={stateIsLogin.isLoggedIn}>
        <Movies 
              movies={movies}
-             handleLikeMovie={handleLikeMovie}
              saveMovies={saveMovies}
              setSaveMovies={setSaveMovies}
-             findAllMovies={findAllMovies}
-             shortMovies={shortMovies}
              isLoading={isLoading}
+             setIsLoading={setIsLoading}
+             isLiked={isLiked}
+             setliked={setliked}
            />
        </ProtectedRouteElement>}
        />
@@ -311,7 +219,9 @@ function findAllMovies(data) {
           <SavedMovies 
             movies={movies}
             saveMovies={saveMovies}
-            handleCardDelete={handleCardDelete}
+            setSaveMovies={setSaveMovies}
+            isLiked={isLiked}
+             setliked={setliked}
           />
           </ProtectedRouteElement>}
         />

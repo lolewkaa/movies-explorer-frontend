@@ -6,6 +6,7 @@ export default function Footer() {
   const location = useLocation();
     return (
       <footer className="footer">
+        <div className="header__wrapper">
         <h2 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
         <div className="footer__container">
             <h2 className="footer__text">&copy; 2023</h2>
@@ -13,6 +14,7 @@ export default function Footer() {
               <Link className="footer__text" target="_blank" to={'https://practicum.yandex.ru/'}>Яндекс.Практикум</Link>
               <Link className="footer__text" target="_blank" to={'https://github.com/lolewkaa'}>Github</Link>
             </div>
+        </div>
         </div>
       </footer>
     )

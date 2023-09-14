@@ -37,7 +37,7 @@ export default function Login({isBlockInput, onLogin, errMessage}) {
           pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
           value={values.email || ''}
           required 
-          readOnly={isBlockInput && true}
+          disabled={isBlockInput && true}
           />
         <span className={`profile__span ${errors.email && 'profile__item-error'}`}>Что-то пошло не так...</span>
         <h2 className="register__text" >Пароль</h2>
@@ -52,7 +52,7 @@ export default function Login({isBlockInput, onLogin, errMessage}) {
           maxLength="40"
           value={values.password || ''}
           required 
-          readOnly={isBlockInput && true}
+          disabled={isBlockInput && true}
           />
         {/* <span className={`register__span ${errors.password && 'register__item-error'}`} >Что-то пошло не так...</span> */}
         <span className={`profile__span ${errors.password  && 'profile__item-error'}`}>Что-то пошло не так...</span>

@@ -8,19 +8,7 @@ import cardPic from '../images/pic__COLOR_card.png'
   const MORE_1280 = 4;
   const MORE_768 = 2;
 
-const movieTime = 40;
 
-export function findMoviesName (movies, name) {
-    return movies.filter((data) => {
-      return data.nameRU.toLowerCase().includes(name.toLowerCase())
-    })
-  }
-  
-  export function findMoviesTime (movies) {
-    return movies.filter((data) => {
-      return data.duration <= movieTime
-    })
-  }
 // export const cards = [
 //   {
 //     name: '33 слова о дизайне',

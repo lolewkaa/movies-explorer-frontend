@@ -12,7 +12,13 @@ import {SCREEN_320,
 
 export default function MoviesCardList(props) {
 
-  const { movies, saveMovies, handleLikeMovie, handleCardDelete } = props
+  const {isLiked,
+  setliked, 
+  setFilteredMoviesSave,
+   movies, 
+   setSaveMovies, 
+   saveMovies, 
+   handleLikeMovie } = props
   
   const [visibleMovies, setVisibleMovies] = useState([]); 
   const [hiddenMovies, setHiddenMovies] = useState([]) 
@@ -71,7 +77,11 @@ export default function MoviesCardList(props) {
         key={movie.id ?? movie.movieId}
         saveMovies={saveMovies}
         handleLikeMovie={handleLikeMovie}
-        handleCardDelete={handleCardDelete}
+        setSaveMovies={setSaveMovies}
+        setFilteredMoviesSave={setFilteredMoviesSave}
+        isSavedMovies={ props.isSavedMovies }
+        isLiked={isLiked}
+        setliked={setliked}
         />
        ))}
        

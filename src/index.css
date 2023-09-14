@@ -19,6 +19,7 @@
 @import url(./blocks/header/__menu-close/header__menu-close.css);
 @import url(./blocks/header/__close-pic/header__close-pic.css);
 @import url(./blocks/header/__menu-pic/header__menu-pic.css);
+@import url(./blocks/header/__wrapper/header__wrapper.css);
 
 @import url(./blocks/promo/promo.css);
 @import url(./blocks/promo/__container/promo__container.css);

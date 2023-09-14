@@ -8,7 +8,9 @@ export default function Header( props) {
   const location = useLocation();
     return (
         <header className={location.pathname === '/' ? 'header' : 'header__white'}>
+          <div className="header__wrapper">
          <Navigation isLoggedIn={isLoggedIn} />
+         </div>
         </header>
       );
 }

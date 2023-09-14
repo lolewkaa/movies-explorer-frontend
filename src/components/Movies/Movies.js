@@ -4,46 +4,114 @@ import Preloader from "./Preloader";
 import MoviesCardList from "./MoviesCardList";
 import Header from "../Header";
 import { useState, useEffect } from 'react';
+import { moviesApi } from '../../utils/MoviesApi'
+import { mainApi } from "../../utils/MainApi";
 
 export default function Movies(props) {
 
-  const {movies, saveMovies, handleLikeMovie, findAllMovies, shortMovies, isLoading } = props
+  const { isLiked,
+  setliked, setSaveMovies, saveMovies, handleLikeMovie } = props
+  const [isLoading, setIsLoading] = useState(false)
+  const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [query, setQuery] = useState("");
+  const [short, setShort] = useState(false);
 
-  const [values, setValues] = useState(JSON.parse(localStorage.getItem('findMovies')) || {
-    search: '',
-    shorts: false,
-  });
+  const refreshMovies = (movies) => {
+    setMovies(movies);
+    localStorage.setItem('allMovies', JSON.stringify(movies));
+  };
+
+  const refreshFindMovies = (movies) => {
+    setFilteredMovies(movies);
+    localStorage.setItem('findMovies', JSON.stringify(movies));
+  };
+
+  const refreshSearchQuery = (query) => {
+    setQuery(query);
+    localStorage.setItem('query', query);
+  };
+
+  const refreshShortMovie = (short) => {
+    setShort(short);
+    localStorage.setItem('short', JSON.stringify(short));
+  };
+ 
+  const refreshMoviesSave = (saveMovies) => {
+    setSaveMovies(saveMovies);
+      localStorage.setItem('allMoviesSave', JSON.stringify(saveMovies));
+    };
+  
 
   useEffect(() => {
-    localStorage.setItem('findMovies', JSON.stringify(values))
-  }, [values]);
+    refreshMovies(JSON.parse(localStorage.getItem('allMovies') || '[]'));
+    refreshFindMovies(JSON.parse(localStorage.getItem('findMovies') || '[]'));
+    refreshSearchQuery(localStorage.getItem('query') || '');
+    refreshShortMovie(JSON.parse(localStorage.getItem('short') || 'false'));
 
+    mainApi
+    .getSavedMovies()
+    .then(movies => {
+      refreshMoviesSave(movies);
+    })
+    .catch((error) => {
+      console.log(`Ошибка: ${error}`);
+    });
+  }, []);
+  
+  const findMoviesByName = (movies, key = '') => {
+    const wordByLowerCase = key.toLowerCase();
+    const filterMovie = movies.filter(
+      (movie) =>
+        (key ? movie.nameRU.toLowerCase().includes(wordByLowerCase) : true) 
+    );
+  
+    return filterMovie.sort((a, b) => {
+      if (a.nameRU < b.nameRU) return -1;
+      if (a.nameRU > b.nameRU) return 1;
+      return 0;
+    });
+  };
 
-  function searchShortMovies(data) {
-    const newValues = {
-      ...data,
-      shorts: data.shorts,
-    };
-
-    shortMovies(newValues);
-    setValues(newValues);
-  }
-
-  function searchAllMovies(data) {
-    return findAllMovies(data)
-      .then(() => {
-        setValues(data);
-        
-      });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      setIsLoading(true)
+      moviesApi
+        .getMovies()
+        .then(movies => {
+          const filteredMovies = findMoviesByName(movies, query)
+          setMovies(filteredMovies);
+    localStorage.setItem('allMovies', JSON.stringify(filteredMovies));
+    setFilteredMovies(filteredMovies);
+    localStorage.setItem('findMovies', JSON.stringify(filteredMovies));
+        })
+        .catch((error) => console.log(`Ошибка: ${error}`))
+        .finally(() => setIsLoading(false))   
   }
 
     return (
       <section className="movies">
-        <SearchForm searchShortMovies={searchShortMovies}  searchAllMovies={searchAllMovies} stateValues={values}/>
+        <SearchForm  
+        query={ query }
+        onSubmit={ handleSubmit }
+        refreshSearchQuery={ refreshSearchQuery }
+        short={ short }
+        refreshShortMovie={ refreshShortMovie }/>
         {isLoading ? (
           <Preloader />
         ) : (
-          <MoviesCardList movies={movies} saveMovies={saveMovies} handleLikeMovie={handleLikeMovie}/>
+          <MoviesCardList 
+          movies={ movies.filter(movie => !short || movie.duration <= 40) }
+          // movies={movies}
+           short={ short } 
+          saveMovies={saveMovies} 
+           handleLikeMovie={handleLikeMovie}
+           setSaveMovies={setSaveMovies}
+           isSavedMovies={ false }
+           setFilteredMovies={setFilteredMovies}
+           isLiked={isLiked}
+             setliked={setliked}
+           />
         )}
       </section>
     )

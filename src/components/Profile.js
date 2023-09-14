@@ -56,8 +56,7 @@ export default function Profile({ isBlockInput, signOut, handleUpdateProfile, er
              placeholder={currentUser.name} 
              value={values.name ? values.name : ''}
              onChange={handleChange}
-             disabled={!isInputActive}
-             readOnly={isBlockInput && true}
+             disabled={!isInputActive || isBlockInput ? true : false}
             />
           </div>
           <span className={`profile__span ${errors.name  && 'profile__item-error'}`}>Что-то пошло не так...</span>
@@ -74,7 +73,7 @@ export default function Profile({ isBlockInput, signOut, handleUpdateProfile, er
             value={values.email ? values.email : ''}
             onChange={handleChange}
             pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
-            disabled={!isInputActive}
+            disabled={!isInputActive || isBlockInput ? true : false}
             readOnly={isBlockInput && true}
             />
           </div>
