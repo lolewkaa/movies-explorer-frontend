@@ -1,0 +1,9 @@
+.form-button__error-message {
+  color: red;
+  text-align: center;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 20px 0;
+  padding: 0;
+}

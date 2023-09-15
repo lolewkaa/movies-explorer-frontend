@@ -1,5 +1,5 @@
 .movies__container {
- margin: 70px 70px 0 70px;
+ margin: 70px auto 0 auto;
  display: flex;
  flex-direction: column;
  align-items: center;
@@ -9,8 +9,14 @@
  max-width: 1140px;
 }
 
+@media screen and (max-width: 769px) {
+  .movies__container {
+    margin: 70px auto 0 auto;
+  }
+}
+
 @media screen and (max-width: 321px) {
     .movies__container {
-      margin: 40px 0 0 0;
+      margin: 40px auto 0 auto;
     }
   }

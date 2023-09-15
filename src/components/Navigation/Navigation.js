@@ -5,16 +5,18 @@ import NavigationLanding from "./NavigationLanding";
 import NavigationProfile from "./NavigationProfile";
 
 
-export default function Navigation() {
+export default function Navigation( props) {
+  const { isLoggedIn } = props;
   // сохраняем местоположение в переменную
   const location = useLocation();
-  
+    
   return (
     <nav className='header__landing-box'>
       <Link to='/'>
         <img className="header__logo" src={headerLogo} alt="Логотип" to='/'/>
       </Link>
-      {location.pathname === '/' ? <NavigationLanding /> : <NavigationProfile />}
+      {/* {location.pathname === '/' ? <NavigationLanding /> : <NavigationProfile />} */}
+      {isLoggedIn ? <NavigationProfile /> : <NavigationLanding />}
     </nav>
   )
 }

@@ -1,5 +1,5 @@
 .movies__box-button-more {
-  max-width: 1140px;
+  width: 100%;
   max-height: 36px;
   margin: 50px 70px 80px 70px;
   font-size: 12px;
@@ -9,7 +9,7 @@
 
 @media screen and (max-width: 769px) {
     .movies__box-button-more {
-        margin: 61px 30px 89px 30px;
+        margin: 61px 0 89px 0;
     }
   }
 

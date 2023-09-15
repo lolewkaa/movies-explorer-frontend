@@ -3,6 +3,7 @@ import React from "react";
 export default function Techs() {
   return (
     <section className="techs" id='techs'>
+      <div className="header__wrapper">
       <h2 className="project__title">Технологии</h2>
       <div className="techs__container">
         <h2 className="techs__text">7 технологий</h2>
@@ -16,6 +17,7 @@ export default function Techs() {
           <h2 className="techs__element">Exspress.js</h2>
           <h2 className="techs__element">mongoDB</h2>
         </div>
+      </div>
       </div>
     </section>
   )
